@@ -61,3 +61,9 @@ Route::put('updateComment', [ApiController::class, 'updateComment']);
 
 //delete user
 Route::delete('deleteUser',[ApiController::class, 'deleteUser']);
+
+//delete user
+Route::delete('deleteStory',[ApiController::class, 'deleteStory']);
+
+//delete user
+Route::delete('deleteComment',[ApiController::class, 'deleteComment']);

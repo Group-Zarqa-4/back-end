@@ -163,5 +163,31 @@ class ApiController extends Controller
             return ['results' => 'update error'];
         }
     }
-    
+
+
+    //delete user
+    public function deleteUser(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+        $user->delete();
+        return ['status' => 'user has been deleted successfully'];
+    }
+
+
+    //delete story
+    public function deleteStory(Request $request)
+    {
+        $story = Story::findOrFail($request->id);
+        $story->delete();
+        return ['status' => 'story has been deleted successfully'];
+    }
+
+
+    //delete comment
+    public function deleteComment(Request $request)
+    {
+        $comment = Comment::findOrFail($request->id);
+        $comment->delete();
+        return ['status' => 'comment has been deleted successfully'];
+    }
 }
