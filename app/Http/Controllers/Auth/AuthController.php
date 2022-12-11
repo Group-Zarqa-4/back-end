@@ -53,10 +53,40 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         // auth()->user()->tokens()->delete();
+        // $request->user()->currentAccessToken()->delete();
         $request->user()->tokens()->delete();
         return response([
             "status" => "200",
             "message" => "User logged out successfully"
         ]);
+    }
+
+
+    public function login_google(Request $request)
+    {
+        $user = User::where("email", "=", $request->email)->first();
+        if ($user) {
+            $token = $user->createToken("auth_token")->plainTextToken;
+            return response([
+                "status" => "success",
+                "message" => "User LoggedIn successfully",
+                "token" => $token,
+                "user" => Auth::user(),
+                "email" => $request->email
+            ]);
+        } else {
+            $user = User::create([
+                "name" => $request->name,
+                "email" => $request->email,
+                "google_id" => $request->google_id
+            ]);
+            $token = $user->createToken("auth_token")->plainTextToken;
+            return response([
+                "status" => "success",
+                "message" => "User LoggedIn successfully",
+                "token" => $token,
+                "user" => Auth::user()
+            ]);
+        }
     }
 }
