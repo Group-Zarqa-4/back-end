@@ -56,11 +56,7 @@ Route::post('storeComment', [CommentController::class, 'storeComment']);
 // ============ update methods ==========
 
 //update user
-<<<<<<< HEAD
-Route::post('updateUser', [UserController::class, 'updateUser']);
-=======
 Route::post('updateuser/{id}', [ApiController::class, 'updateUser']);
->>>>>>> c069e12f3e1327d1fea08312b2af74cc8275ea17
 
 //update story
 Route::post('updateStory', [StoryController::class, 'updateStory']);
@@ -72,15 +68,6 @@ Route::post('updateComment', [CommentController::class, 'updateComment']);
 // ============ delete methods ==========
 
 //delete user
-<<<<<<< HEAD
-Route::delete('deleteUser', [UserController::class, 'deleteUser']);
-
-//delete story
-Route::delete('deleteStory', [StoryController::class, 'deleteStory']);
-
-//delete comment
-Route::delete('deleteComment', [CommentController::class, 'deleteComment']);
-=======
 Route::delete('deleteuser/{id}', [ApiController::class, 'deleteUser']);
 
 //delete user
@@ -88,4 +75,3 @@ Route::delete('deleteStory', [ApiController::class, 'deleteStory']);
 
 //delete user
 Route::delete('deletecomment/{id}', [ApiController::class, 'deleteComment']);
->>>>>>> c069e12f3e1327d1fea08312b2af74cc8275ea17
