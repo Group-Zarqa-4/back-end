@@ -24,7 +24,7 @@ return new class extends Migration
             $table->enum("role", ["user", "admin"])->default("user");
             $table->timestamps();
             $table->string('google_id')->nullable();
-            $table->string('is_premium');
+            $table->string('is_premium')->default(0);
             $table->softDeletes();
         });
     }

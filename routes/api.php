@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\Auth\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,3 +68,14 @@ Route::delete('deleteStory', [ApiController::class, 'deleteStory']);
 
 //delete user
 Route::delete('deletecomment/{id}', [ApiController::class, 'deleteComment']);
+
+
+// ============ Authentication routes ==========
+
+Route::post('/register', [UserController::class, "register"]);
+Route::post('/login', [UserController::class, "login"]);
+
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('/logout', [UserController::class, "logout"]);
+});
