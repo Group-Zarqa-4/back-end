@@ -21,15 +21,65 @@ class PostController extends Controller
         } else {
             $data = [];
             foreach (Post::all() as $post) {
-                $record = [
-                    'post' => $post,
-                    'user' => $post->user,
-                    'comments' => $post->comments
-                ];
+                $comments = [];
+                foreach ($post->comments as $comment) {
+                    $record = [
+                        'content' => $comment->content,
+                        'date' => $comment->created_at,
+                        'comment_by' => $comment->user,
+                    ];
+                    array_push($comments, $record);
+                }
 
-                $data = collect($data)->push($record);
+                $record =
+                    ['post' => [
+                        'content' => $post->content,
+                        'date' => $post->created_at,
+                        'user' => $post->user,
+                        'comments' => $comments
+                    ]];
+                array_push($data, $record);
             }
             return response()->json($data);
         }
+    }
+
+    // store new post
+    public function storePost(Request $request)
+    {
+        $post = new Post;
+        $post->content = $request->content;
+        $post->user_id = $request->user_id;
+        $check = $post->save();
+
+        if ($check) {
+            return ['results' => 'post added successfully'];
+        } else {
+            return ['results' => 'unknown error  occured '];
+        }
+    }
+
+    //update post
+
+    public function updatePost(Request $request)
+    {
+        $post = Post::findOrFail($request->id);
+        $post->content = $request->content;
+        $post->user_id = $request->user_id;
+        $check = $post->save();
+
+        if ($check) {
+            return ['results' => 'post updated successfully'];
+        } else {
+            return ['results' => 'unknown error  occured '];
+        }
+    }
+
+    //delete post
+    public function deletePost(Request $request)
+    {
+        $post = Post::findOrFail($request->id);
+        $post->delete();
+        return['status' => 'post has been deleted successfully'];
     }
 }
