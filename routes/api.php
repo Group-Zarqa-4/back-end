@@ -48,7 +48,7 @@ Route::post('storeComment', [ApiController::class, 'storeComment']);
 // ============ put methods ==========
 
 //update user
-Route::put('updateUser', [ApiController::class,'updateUser']);
+Route::post('updateuser/{id}', [ApiController::class, 'updateUser']);
 
 //update story
 Route::put('updateStory', [ApiController::class, 'updateStory']);
@@ -60,10 +60,10 @@ Route::put('updateComment', [ApiController::class, 'updateComment']);
 // ============ delete methods ==========
 
 //delete user
-Route::delete('deleteUser',[ApiController::class, 'deleteUser']);
+Route::delete('deleteuser/{id}', [ApiController::class, 'deleteUser']);
 
 //delete user
-Route::delete('deleteStory',[ApiController::class, 'deleteStory']);
+Route::delete('deleteStory', [ApiController::class, 'deleteStory']);
 
 //delete user
-Route::delete('deleteComment',[ApiController::class, 'deleteComment']);
+Route::delete('deletecomment/{id}', [ApiController::class, 'deleteComment']);

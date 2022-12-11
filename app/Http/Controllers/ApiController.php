@@ -116,12 +116,11 @@ class ApiController extends Controller
     }
 
     // update user
-    public function updateUser(Request $request)
+    public function updateUser(Request $request, $id)
     {
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
         $user->name = ucfirst(strtolower($request['name']));
         $user->email = strtolower($request['email']);
-        $user->password = Hash::make($request['password']);
         $user->role = $request['role'];
         $user->is_premium = $request['is_premium'];
         $check =  $user->save();
@@ -166,9 +165,9 @@ class ApiController extends Controller
 
 
     //delete user
-    public function deleteUser(Request $request)
+    public function deleteUser($id)
     {
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
         $user->delete();
         return ['status' => 'user has been deleted successfully'];
     }
@@ -184,9 +183,9 @@ class ApiController extends Controller
 
 
     //delete comment
-    public function deleteComment(Request $request)
+    public function deleteComment($id)
     {
-        $comment = Comment::findOrFail($request->id);
+        $comment = Comment::findOrFail($id);
         $comment->delete();
         return ['status' => 'comment has been deleted successfully'];
     }
