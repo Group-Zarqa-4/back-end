@@ -55,6 +55,10 @@ Route::post('storeStory', [StoryController::class, 'storeStory']);
 Route::post('storeComment', [CommentController::class, 'storeComment']);
 
 
+//store new post
+Route::post('storePost', [PostController::class, 'storePost']);
+
+
 // ============ update methods ==========
 
 //update user
@@ -65,6 +69,10 @@ Route::post('updateStory', [StoryController::class, 'updateStory']);
 
 //update comment
 Route::post('updateComment', [CommentController::class, 'updateComment']);
+
+//update new post
+Route::post('updatePost', [PostController::class, 'updatePost']);
+
 
 
 // ============ delete methods ==========
@@ -79,13 +87,8 @@ Route::delete('deleteStory', [StoryController::class, 'deleteStory']);
 //delete comment
 Route::delete('deleteComment', [CommentController::class, 'deleteComment']);
 
-Route::delete('deleteuser/{id}', [ApiController::class, 'deleteUser']);
-
 //delete user
-Route::delete('deleteStory', [ApiController::class, 'deleteStory']);
-
-//delete user
-Route::delete('deletecomment/{id}', [ApiController::class, 'deleteComment']);
+Route::delete('deletePost', [PostController::class, 'deletePost']);
 
 
 // ============ Authentication routes ==========
