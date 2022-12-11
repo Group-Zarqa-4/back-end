@@ -4,22 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
     //return all comments
-    public function getComments($id = null)
+    public function getComments($id)
     {
-        return $id ? Comment::findOrFail($id) : Comment::all();
+        return $id ? DB::table('comments')
+            ->join('users', 'users.id', '=', 'comments.user_id')
+            ->join('posts', 'posts.id', '=', 'comments.post_id')
+            ->where('posts.id', $id)
+            ->get() : Comment::all();
     }
 
     // store new comment
     public function storeComment(Request $request)
     {
         $comment = new Comment;
-        $comment->id = $request->id;
         $comment->user_id = $request->user_id;
-        $comment->story_id = $request->story_id;
+        $comment->post_id = $request->post_id;
         $comment->content = $request->content;
         $check = $comment->save();
 
@@ -53,6 +57,4 @@ class CommentController extends Controller
         $comment->delete();
         return ['status' => 'comment has been deleted successfully'];
     }
-
-    
 }
