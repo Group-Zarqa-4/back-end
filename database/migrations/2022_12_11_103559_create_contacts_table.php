@@ -13,18 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('image')->default('logos/profilepic.jpg');
-            $table->rememberToken();
-            $table->enum("role", ["user", "admin"])->default("user");
+            $table->string('email');
+            $table->string('content');
             $table->timestamps();
-            $table->string('google_id')->nullable();
-            $table->number('is_premium')->default(0);
             $table->softDeletes();
         });
     }
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('contacts');
     }
 };

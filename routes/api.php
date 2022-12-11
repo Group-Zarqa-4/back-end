@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\StoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,47 +26,52 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 // return user/s info
-Route::get('users/{id?}', [ApiController::class, 'getUsers']);
+Route::get('users/{id?}', [UserController::class, 'getUsers']);
 
 // return story/ies info
-Route::get('stories/{id?}', [ApiController::class, 'getStories']);
+Route::get('stories/{id?}', [StoryController::class, 'getStories']);
 
 // return comment/s info
-Route::get('comments/{id?}', [ApiController::class, 'getComments']);
+Route::get('comments/{id?}', [CommentController::class, 'getComments']);
+
+// return post/s info
+Route::get('posts/{id?}', [PostController::class, 'getPosts']);
+
+
 
 
 // ============ post methods ==========
 
 //store new user
-Route::post('storeUser', [ApiController::class, 'storeUser']);
+Route::post('storeUser', [UserController::class, 'storeUser']);
 
 //store new story
-Route::post('storeStory', [ApiController::class, 'storeStory']);
+Route::post('storeStory', [StoryController::class, 'storeStory']);
 
 
 //store new comment
-Route::post('storeComment', [ApiController::class, 'storeComment']);
+Route::post('storeComment', [CommentController::class, 'storeComment']);
 
 
-// ============ put methods ==========
+// ============ update methods ==========
 
 //update user
-Route::put('updateUser', [ApiController::class,'updateUser']);
+Route::post('updateUser', [UserController::class, 'updateUser']);
 
 //update story
-Route::put('updateStory', [ApiController::class, 'updateStory']);
+Route::post('updateStory', [StoryController::class, 'updateStory']);
 
 //update comment
-Route::put('updateComment', [ApiController::class, 'updateComment']);
+Route::post('updateComment', [CommentController::class, 'updateComment']);
 
 
 // ============ delete methods ==========
 
 //delete user
-Route::delete('deleteUser',[ApiController::class, 'deleteUser']);
+Route::delete('deleteUser', [UserController::class, 'deleteUser']);
 
-//delete user
-Route::delete('deleteStory',[ApiController::class, 'deleteStory']);
+//delete story
+Route::delete('deleteStory', [StoryController::class, 'deleteStory']);
 
-//delete user
-Route::delete('deleteComment',[ApiController::class, 'deleteComment']);
+//delete comment
+Route::delete('deleteComment', [CommentController::class, 'deleteComment']);
