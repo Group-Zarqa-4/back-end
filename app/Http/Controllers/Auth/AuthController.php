@@ -23,7 +23,6 @@ class AuthController extends Controller
             "password" => Hash::make($request->password)
         ]);
         $token = $user->createToken("auth_token")->plainTextToken;
-        $user = Auth::user();
         return response()->json([
             "status" => "success",
             "message" => "User registered successfully",
@@ -52,7 +51,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        // auth()->user()->tokens()->delete();
+        auth()->user()->tokens()->delete();
         // $request->user()->currentAccessToken()->delete();
         $request->user()->tokens()->delete();
         return response([
