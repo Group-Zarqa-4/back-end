@@ -73,7 +73,9 @@ class AuthController extends Controller
                 "message" => "User LoggedIn successfully",
                 "token" => $token,
                 "user" => $user,
-                "email" => $request->email
+                "email" => $request->email,
+                "userId" => $user->id,
+
             ]);
         } else {
             $user = User::create([
