@@ -68,8 +68,7 @@ Route::post('updateStory/{id?}', [StoryController::class, 'updateStory']);
 
 
 //update comment
-Route::post('updateComment/{id?}', [CommentController::class, 'updateComment']);
-
+Route::post('updateComment/{id}', [CommentController::class, 'updateComment']);
 
 //update new post
 Route::post('updatePost/{id?}', [PostController::class, 'updatePost']);

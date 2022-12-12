@@ -10,24 +10,28 @@ use Illuminate\Support\Facades\DB;
 class CommentController extends Controller
 {
     //return all comments
-    public function getComments($id)
+    public function getComments($id = null)
     {
-        // return $id ? DB::table('comments')
-        //     ->join('users', 'users.id', '=', 'comments.user_id')
-        //     ->join('posts', 'posts.id', '=', 'comments.post_id')
-        //     ->where('posts.id', $id)
-        //     ->get() : Comment::all();
-        $comments = Post::findOrFail($id)->comments;
-        // $users = Comment::all();
-        $comments = Comment::all();
-        $usersComents = [];
-        foreach ($comments as $comment) {
-            $usersComents[] = $comment->user;
+        if ($id) {
+            // return $id ? DB::table('comments')
+            //     ->join('users', 'users.id', '=', 'comments.user_id')
+            //     ->join('posts', 'posts.id', '=', 'comments.post_id')
+            //     ->where('posts.id', $id)
+            //     ->get() : Comment::all();
+            $comments = Post::findOrFail($id)->comments;
+            // $users = Comment::all();
+            $comments = Comment::all();
+            $usersComents = [];
+            foreach ($comments as $comment) {
+                $usersComents[] = $comment->user;
+            }
+            return ([
+                "comments" => $comments,
+                // "users" => $usersComents
+            ]);
+        } else {
+            return Comment::all();
         }
-        return ([
-            "comments" => $comments,
-            // "users" => $usersComents
-        ]);
     }
 
     // store new comment
