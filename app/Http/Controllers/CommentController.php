@@ -18,10 +18,15 @@ class CommentController extends Controller
         //     ->where('posts.id', $id)
         //     ->get() : Comment::all();
         $comments = Post::findOrFail($id)->comments;
-        $users = Comment::all()->user;
+        // $users = Comment::all();
+        $comments = Comment::all();
+        $usersComents = [];
+        foreach ($comments as $comment) {
+            $usersComents[] = $comment->user;
+        }
         return ([
             "comments" => $comments,
-            "users" => $users
+            // "users" => $usersComents
         ]);
     }
 

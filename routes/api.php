@@ -96,6 +96,7 @@ Route::delete('deletePost', [PostController::class, 'deletePost']);
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
 Route::post('/loginGoogle', [AuthController::class, "login_google"]);
+// Route::post('/loginGoogle', [AuthController::class, "login_google"]);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
