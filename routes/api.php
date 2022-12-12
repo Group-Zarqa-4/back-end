@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\StoryController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StoryController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -96,8 +97,10 @@ Route::delete('deletePost', [PostController::class, 'deletePost']);
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
 Route::post('/loginGoogle', [AuthController::class, "login_google"]);
-// Route::post('/loginGoogle', [AuthController::class, "login_google"]);
+Route::post('/contact', [ContactController::class, "store"]);
 
+Route::post('/updateUser', [AuthController::class, "update_user"]);
+Route::post('/updatePassword', [AuthController::class, "update_password"]);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/logout', [AuthController::class, "logout"]);
