@@ -27,7 +27,8 @@ class AuthController extends Controller
             "status" => "success",
             "message" => "User registered successfully",
             "token" => $token,
-            "user" => $user
+            "user" => $user,
+            "userId" => $user->id
         ]);
     }
 
@@ -44,7 +45,8 @@ class AuthController extends Controller
             "status" => "success",
             "message" => "User LoggedIn successfully",
             "token" => $token,
-            "user" => Auth::user()
+            "user" => Auth::user(),
+            "userId" => Auth::user()->id,
         ]);
     }
 

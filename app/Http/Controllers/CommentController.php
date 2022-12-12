@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,11 +12,17 @@ class CommentController extends Controller
     //return all comments
     public function getComments($id)
     {
-        return $id ? DB::table('comments')
-            ->join('users', 'users.id', '=', 'comments.user_id')
-            ->join('posts', 'posts.id', '=', 'comments.post_id')
-            ->where('posts.id', $id)
-            ->get() : Comment::all();
+        // return $id ? DB::table('comments')
+        //     ->join('users', 'users.id', '=', 'comments.user_id')
+        //     ->join('posts', 'posts.id', '=', 'comments.post_id')
+        //     ->where('posts.id', $id)
+        //     ->get() : Comment::all();
+        $comments = Post::findOrFail($id)->comments;
+        $users = Comment::all()->user;
+        return ([
+            "comments" => $comments,
+            "users" => $users
+        ]);
     }
 
     // store new comment
