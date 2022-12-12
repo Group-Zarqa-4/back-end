@@ -50,45 +50,44 @@ Route::post('storeUser', [UserController::class, 'storeUser']);
 //store new story
 Route::post('storeStory', [StoryController::class, 'storeStory']);
 
-
 //store new comment
 Route::post('storeComment', [CommentController::class, 'storeComment']);
-
 
 //store new post
 Route::post('storePost', [PostController::class, 'storePost']);
 
-
 // ============ update methods ==========
 
+
 //update user
-Route::post('updateUser', [UserController::class, 'updateUser']);
+Route::post('updateUser/{id?}', [UserController::class, 'updateUser']);
+
 
 //update story
-Route::post('updateStory', [StoryController::class, 'updateStory']);
+Route::post('updateStory/{id?}', [StoryController::class, 'updateStory']);
+
 
 //update comment
-Route::post('updateComment', [CommentController::class, 'updateComment']);
+Route::post('updateComment/{id?}', [CommentController::class, 'updateComment']);
+
 
 //update new post
-Route::post('updatePost', [PostController::class, 'updatePost']);
-
-
+Route::post('updatePost/{id?}', [PostController::class, 'updatePost']);
 
 // ============ delete methods ==========
 
 //delete user
 
-Route::delete('deleteUser', [UserController::class, 'deleteUser']);
+Route::delete('deleteUser/{id?}', [UserController::class, 'deleteUser']);
 
 //delete story
-Route::delete('deleteStory', [StoryController::class, 'deleteStory']);
+Route::delete('deleteStory/{id?}', [StoryController::class, 'deleteStory']);
 
 //delete comment
-Route::delete('deleteComment', [CommentController::class, 'deleteComment']);
+Route::delete('deleteComment/{id?}', [CommentController::class, 'deleteComment']);
 
 //delete user
-Route::delete('deletePost', [PostController::class, 'deletePost']);
+Route::delete('deletePost/{id?}', [PostController::class, 'deletePost']);
 
 
 // ============ Authentication routes ==========
@@ -96,7 +95,6 @@ Route::delete('deletePost', [PostController::class, 'deletePost']);
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
 Route::post('/loginGoogle', [AuthController::class, "login_google"]);
-// Route::post('/loginGoogle', [AuthController::class, "login_google"]);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {

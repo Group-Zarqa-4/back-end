@@ -77,9 +77,9 @@ class PostController extends Controller
     }
 
     //delete post
-    public function deletePost(Request $request)
+    public function deletePost($id)
     {
-        $post = Post::findOrFail($request->id);
+        $post = Post::findOrFail($id);
         $post->delete();
         return ['status' => 'post has been deleted successfully'];
     }

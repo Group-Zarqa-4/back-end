@@ -63,9 +63,9 @@ class CommentController extends Controller
 
 
     //delete comment
-    public function deleteComment(Request $request)
+    public function deleteComment($id)
     {
-        $comment = Comment::findOrFail($request->id);
+        $comment = Comment::findOrFail($id);
         $comment->delete();
         return ['status' => 'comment has been deleted successfully'];
     }
