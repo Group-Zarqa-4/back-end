@@ -79,14 +79,16 @@ class AuthController extends Controller
             $user = User::create([
                 "name" => $request->name,
                 "email" => $request->email,
-                "google_id" => $request->google_id
+                "google_id" => $request->google_id,
+                "userId" => $user->id,
             ]);
             $token = $user->createToken("auth_token")->plainTextToken;
             return response([
                 "status" => "success",
                 "message" => "User LoggedIn successfully",
                 "token" => $token,
-                "user" => Auth::user()
+                // "user" => Auth::user(),
+                "userId" => Auth::user()->id,
             ]);
         }
     }
