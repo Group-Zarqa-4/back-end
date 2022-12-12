@@ -64,9 +64,9 @@ class StoryController extends Controller
 
 
     //delete story
-    public function deleteStory(Request $request)
+    public function deleteStory( $id)
     {
-        $story = Story::findOrFail($request->id);
+        $story = Story::findOrFail($id);
         $story->delete();
         return ['status' => 'story has been deleted successfully'];
     }
