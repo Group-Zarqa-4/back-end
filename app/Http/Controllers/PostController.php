@@ -36,6 +36,7 @@ class PostController extends Controller
                         'content' => $post->content,
                         'date' => $post->created_at,
                         'user' => $post->user,
+                        'id' => $post->id,
                         'comments' => $comments
                     ]];
                 array_push($data, $record);
@@ -80,6 +81,6 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($request->id);
         $post->delete();
-        return['status' => 'post has been deleted successfully'];
+        return ['status' => 'post has been deleted successfully'];
     }
 }
