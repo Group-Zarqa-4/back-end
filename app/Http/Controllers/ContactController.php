@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        return response([
+            "messages" => Contact::all(),
+            "status" => 200
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -19,6 +27,16 @@ class ContactController extends Controller
 
         return response([
             "message" => "We recived your message successfully",
+            "status" => 200
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+        return response([
+            "message" => "Delete message successfully",
             "status" => 200
         ]);
     }

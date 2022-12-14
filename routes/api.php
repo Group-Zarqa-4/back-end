@@ -96,6 +96,8 @@ Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
 Route::post('/loginGoogle', [AuthController::class, "login_google"]);
 Route::post('/contact', [ContactController::class, "store"]);
+Route::get('/contact/all', [ContactController::class, "index"]);
+Route::delete('/contact/{id}', [ContactController::class, "destroy"]);
 
 Route::post('/updateUser', [AuthController::class, "update_user"]);
 Route::post('/updatePassword', [AuthController::class, "update_password"]);
