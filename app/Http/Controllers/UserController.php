@@ -55,14 +55,14 @@ class UserController extends Controller
 
 
     // update user
-    public function updateUser(Request $request)
+    public function updateUser(Request $request,$id)
     {
-        $user = User::findOrFail($request->id);
+        $user = User::findOrFail($id);
         $user->name = ucfirst(strtolower($request['name']));
         $user->email = strtolower($request['email']);
-        $user->password = Hash::make($request['password']);
+        // $user->password = Hash::make($request['password']);
         $user->role = $request['role'];
-        $user->is_premium = $request['is_premium'];
+        // $user->is_premium = $request['is_premium'];
         $check =  $user->save();
 
         if ($check) {
