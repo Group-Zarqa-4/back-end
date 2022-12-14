@@ -74,10 +74,21 @@ class UserController extends Controller
 
 
     //delete user
-    public function deleteUser( $id)
+    public function deleteUser($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
         return ['status' => 'user has been deleted successfully'];
+    }
+
+
+    public function premium($id)
+    {
+        // $user = User::findOrFail($id);
+        User::where('id', $id)
+            ->update(['is_premium' => 1]);
+
+
+        return ['status' => 'User is premium now'];
     }
 }
