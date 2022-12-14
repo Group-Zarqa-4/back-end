@@ -105,3 +105,10 @@ Route::post('/updatePassword', [AuthController::class, "update_password"]);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/logout', [AuthController::class, "logout"]);
 });
+
+
+
+
+
+
+Route::post('premium/{id}', [UserController::class, 'premium']);
